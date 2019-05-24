@@ -1,4 +1,5 @@
 import time
+import winsound
 
 print("start massage right")
 time.sleep(180)
