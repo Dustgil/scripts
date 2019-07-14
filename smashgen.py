@@ -188,13 +188,16 @@ profile_list.append(p3) # comment these out if profile not used. to use, these m
 names.append(p3name)
 modes.append(p3mode)
 
-p4 = [1,3]
+p4 = [1,2,3,4,5,6,7]
 p4name = "sample"
-p4mode = 0
+p4mode = 1
 
 #profile_list.append(p4) # comment these out if profile not used. to use, these must be uncommented.
 #names.append(p4name)
 #modes.append(p4mode)
+
+
+
 
 # this is the end of the settings. everything else shouldn't be touched unless you know what you're doing.
 
@@ -213,14 +216,11 @@ def select(profile, mode):
                 if e == n:
                     set = 0
         print(character_list_true[n])
+
     if mode == 1: # setup inclusive loop.
-        set = 0
-        while set == 0:
-            n = random.randint(0, len(character_list) - 1)
-            for e in profile:
-                if e == n:
-                    set = 1
-        print(character_list_true[n])
+        n = random.randint(0, len(profile) - 1)
+        print(character_list_true[profile[n]])
+
                 
 
 # now generate character for each person, using a counter to iterate through
