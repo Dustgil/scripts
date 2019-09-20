@@ -51,7 +51,37 @@ li.append(element)
 lists.append(li)
 
 diff = np.array(lists)
-print(diff)
+
+# specify potential function.
+V = "x**2"
+
+
+potential_list = []
+
+point = a
+for row in range(n):
+    sub = "(" + str(point) + ")"
+    pot_at_point = V.replace('x', sub)
+    value = eval(pot_at_point)
+
+    li = []
+    for e in range(n):
+        if e == row:
+            li.append(value)
+        else:
+            li.append(0)
+
+    potential_list.append(li)
+
+    point += delx
+
+potential = np.array(potential_list)
+
+
+hamiltonian = np.add(diff, potential)
+print(hamiltonian)
+
+
 
     
             
