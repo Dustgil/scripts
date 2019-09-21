@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 V = 0
 
 # calculated second derivative operator (using 3-point finite differences method)
-n = 100 # number of steps
+n = 45 # number of steps
 
 a = 0
 b = 100
@@ -92,8 +92,6 @@ potential = np.array(potential_list)
 hamiltonian = np.add(diff, potential)
 
 eig, vec = np.linalg.eig(hamiltonian)
-
-print(x_values)
 
 plt.plot(x_values, vec[:,3])
 plt.show()
