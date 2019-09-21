@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 # specify potential function. In future will set this up as an evaluatable
 # function of x over the range. The values over the range will be represented
@@ -7,11 +8,21 @@ import numpy as np
 V = 0
 
 # calculated second derivative operator (using 3-point finite differences method)
-n = 10 # number of steps
+n = 100 # number of steps
 
 a = 0
 b = 100
 delx = (b-a)/n
+
+
+# create a linspace for x values
+x_values = []
+
+x = a
+for _ in range(n):
+    x_values.append(x)
+    x += delx
+
 
 lists = []
 
@@ -53,7 +64,7 @@ lists.append(li)
 diff = np.array(lists)
 
 # specify potential function.
-V = "x**2"
+V = "0"
 
 
 potential_list = []
@@ -79,7 +90,14 @@ potential = np.array(potential_list)
 
 
 hamiltonian = np.add(diff, potential)
-print(hamiltonian)
+
+eig, vec = np.linalg.eig(hamiltonian)
+
+print(x_values)
+
+plt.plot(x_values, vec[:,3])
+plt.show()
+
 
 
 
