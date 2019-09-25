@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 def vpot(x):
     return x**2
 
-n = 320 # of steps
+n = 400 # of steps
 
 a = -10 # left wall position
 b = 10 # right wall position
@@ -60,7 +60,7 @@ val, vec = np.linalg.eig(H)
 z = np.argsort(val)
 
 # specify range of eigenfunctions to graph
-z = z[3:4]
+z = z[0:4]
 
 # normalize and print energies for z
 energy_levels = (val[z]/val[z][0])
@@ -75,6 +75,8 @@ for i in range(len(z)):
     y = np.append(y,0)
     y = np.append(y,vec[:,z[i]])
     y = np.append(y,0)
-    plt.plot(x,y)
+    plt.plot(x,y, label='{}'.format(i))
+    plt.xlabel('x')
 
+plt.legend()
 plt.show()
