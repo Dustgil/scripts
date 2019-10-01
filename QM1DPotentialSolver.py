@@ -49,8 +49,6 @@ for i in range(n-2):
 
 H = -T/(2*(delx)**2) + V
 
-print(H)
-
 # calculate n-2 energies and eigenfunctions
 
 val, vec = np.linalg.eig(H)
@@ -77,6 +75,8 @@ for i in range(len(z)):
     y = np.append(y,0)
     plt.plot(x,y, label='{}'.format(i))
     plt.xlabel('x')
+    plt.title('Wavefunctions for Specified Potential')
+    plt.ylabel('\u03C8')
 
 plt.legend()
 plt.show()
