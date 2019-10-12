@@ -50,6 +50,15 @@ def determine_winner(tru, lead, played_cards):
 
         # now iterate through rankings, and check if each card is in list
         # return index for first card to show up. thats the trick winner.
+
+    print(ranking)
+
+    for i in ranking:
+        if i in played_cards:
+            return played_cards.index(i)
+                
+
+print(determine_winner('clubs', 'diamonds', ['Kd','10d','9s','10c']))
     
     
     
