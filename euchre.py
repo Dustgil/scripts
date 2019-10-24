@@ -56,9 +56,27 @@ def determine_winner(tru, lead, played_cards):
     for i in ranking:
         if i in played_cards:
             return played_cards.index(i)
+
+def get_key(val):
+    for key, value in suits.items():
+        if value == value:
+            return key
+
+
+def determine_tru(dealer, flip_up_card):
+
+    first_to_act = dealer + 1
+
+    flip_up_suit = get_key(flip_up_card)
+
+    print('Player {}: Tell Player {} to pick up {}?'.format(first_to_act%3, first_to_act, flip_up_card))
+
+
+
+    
                 
 
-print(determine_winner('clubs', 'diamonds', ['Kd','10d','9s','10c']))
+determine_tru(2, 'As')
     
     
     
@@ -72,6 +90,7 @@ p2p4_score = 0
 
 player_list = [1,2,3,4]
 dealer = player_list[0]
+turn_counter = 0
 
 while p1p3_score < 10 & p2p4_score < 10:
     
