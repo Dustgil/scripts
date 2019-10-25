@@ -65,18 +65,19 @@ def get_key(val):
 
 def determine_tru(dealer, flip_up_card):
 
-    first_to_act = dealer + 1
+    first_to_act = dealer
 
     flip_up_suit = get_key(flip_up_card)
 
-    print('Player {}: Tell Player {} to pick up {}?'.format(first_to_act%3, first_to_act, flip_up_card))
+
+    print('Player {}: Tell Player {} to pick up {}?'.format((first_to_act + 1)%4 + 1, (first_to_act)%4 + 1, flip_up_card))
 
 
 
     
                 
 
-determine_tru(2, 'As')
+determine_tru(3, 'As')
     
     
     
