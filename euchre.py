@@ -60,9 +60,10 @@ def determine_winner(tru, lead, played_cards):
             return played_cards.index(i)
 
 def get_key(val):
-    for key, value in suits.items():
-        if value == value:
-            return key
+    for key, li in suits.items():
+        for value in li:
+            if value == val:
+                return key
 
 
 def determine_tru(dealer, flip_up_card):
@@ -100,6 +101,57 @@ def determine_tru(dealer, flip_up_card):
                 print('Error: Please re-enter.')
 
     print('REDEAL..')
+
+def trick(first_to_act, trump, hand_list): # works but need to include left bower with right bower's suit in check somehow
+    
+    played_cards = []
+    t = False
+    while t == False:
+        print('Player {}: Play card'.format(first_to_act + 1))
+        card = input()
+        if card in hand_list[first_to_act]:
+            hand_list[first_to_act].remove(card)
+            suit = get_key(card)
+            played_cards.append(card)
+            t = True
+        else:
+            print('Please enter card in your hand.')
+
+    for i in range(3):
+        t = False
+        while t == False:
+            print('Player {}: Play your card.'.format((first_to_act + (i+2))%4))
+            card = input()
+            hand = hand_list[(first_to_act + (i+1))%4]
+            if card in hand:
+                if get_key(card) != suit: # check for no cards of leading suit in hand if not same suit
+                    suit_check = False
+                    for e in hand:
+                        if get_key(e) == suit:
+                            suit_check = True
+                    if suit_check == True:
+                        print('Must play leading suit.')
+                    else:
+                        hand_list[(first_to_act + (i+1))%4].remove(card)
+                        played_cards.append(card)
+                        t = True
+
+                else:
+                    hand_list[(first_to_act + (i+1))%4].remove(card)
+                    played_cards.append(card)
+                    t = True
+            else:
+                print('Must play card in your hand')
+    winner = determine_winner(trump, suit, played_cards)
+    return winner, hand_list
+
+li = [['Jh', 'As'],['Qd','Ad'],['Kh','Jd'],['9h','10c']]
+win, hand = trick(0, 'hearts', li)
+print(win)
+                
+                        
+                
+    
 
 
 
