@@ -101,6 +101,7 @@ def determine_tru(dealer, flip_up_card):
                 print('Error: Please re-enter.')
 
     print('REDEAL..')
+    return 'redeal'
 
 def trick(first_to_act, trump, hand_list): # works but need to include left bower with right bower's suit in check somehow
     
@@ -144,26 +145,6 @@ def trick(first_to_act, trump, hand_list): # works but need to include left bowe
                 print('Must play card in your hand')
     winner = determine_winner(trump, suit, played_cards)
     return winner, hand_list
-
-li = [['Jh', 'As'],['Qd','Ad'],['Kh','Jd'],['9h','10c']]
-win, hand = trick(0, 'hearts', li)
-print(win)
-                
-                        
-                
-    
-
-
-
-
-    
-                
-
-print(determine_tru(0, 'As'))
-    
-    
-    
-    
     
                 
     
@@ -172,13 +153,51 @@ p1p3_score = 0
 p2p4_score = 0
 
 player_list = [1,2,3,4]
-dealer = player_list[0]
+dealer = 0
 turn_counter = 0
 
-while p1p3_score < 10 & p2p4_score < 10:
+while (p1p3_score < 10) & (p2p4_score < 10):
+    print('lol')
+
+    # determine trump loop until trump is chosen
+    done = False
+    while done == False:
+        print('lol')
+        random.shuffle(cards)
+        hands = [cards[0:5],cards[5:10],cards[10:15],cards[15:20]]
+        for e in hands:
+            print(e)
+        flip = cards[20]
+        tru = determine_tru(dealer, flip)
+        dealer = (dealer+1)%3
+        if tru != 'redeal':
+            done = True
+    # next, complete 5 tricks and score
+    
+
+    scores = [0,0,0,0]
+
+    for _ in range(5):
+        winner, hands = trick((dealer+1)%4, tru, hands) # this wont work for a sec. need to tie it to index corresponding to player. currently i think it's gonna treat whoever played first in the trick as player 0.
+        scores[winner] += 1
+
+    # next find hand winner and increment score. not calculating euchres atm
+    if (scores[0] + scores[2]) > (scores[1] + scores[3]):
+        p1p3_score += 1
+    else:
+        p2p4_score += 1
+        
     
 
     random.shuffle(cards)
+    hands = [cards[0:5],cards[5:10],cards[10:15],cards[15:20]]
+    flip = cards[20]
+    
+    tru = determine_tru(dealer, flip)
+    while tru == 'redeal':
+        dealer = (dealer+1)%3
+        random.shu
+    
 
     p1_hand = cards[0:5]
     p2_hand = cards[5:10]
